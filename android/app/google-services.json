@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1033697200835",
+    "firebase_url": "https://tier-list-maker-76af4.firebaseio.com",
+    "project_id": "tier-list-maker-76af4",
+    "storage_bucket": "tier-list-maker-76af4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1033697200835:android:1157696c19023d81683076",
+        "android_client_info": {
+          "package_name": "com.tierlistmaker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1033697200835-rd1aihuhh07f5hge8k0378768di1o1ld.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tierlistmaker",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "1033697200835-9ar6or343p19fes06h52qptkeasrskht.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD9M4Sy-lzVAS4ctlTPG_jpAAC64ut4JEU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1033697200835-9ar6or343p19fes06h52qptkeasrskht.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

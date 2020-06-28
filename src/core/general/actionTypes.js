@@ -1,0 +1,5 @@
+
+export const SELECT_LANGUAGE = 'SELECT_LANGUAGE';
+
+export const COMPLETE_TUTORIAL = 'COMPLETE_TUTORIAL';
+

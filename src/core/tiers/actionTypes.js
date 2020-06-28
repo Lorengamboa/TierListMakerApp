@@ -1,0 +1,39 @@
+export const SELECT_TIER = 'SELECT_TIER';
+
+export const CREATE_TIER = 'CREATE_TIER';
+
+export const DELETE_TIER = 'DELETE_TIER';
+
+export const RESET_TIER = 'RESET_TIER';
+
+export const MOVE_IMAGE = 'MOVE_IMAGE';
+
+export const DELETE_IMAGE = 'DELETE_IMAGE';
+
+export const DELETE_LABEL = 'DELETE_LABEL';
+
+export const UPDATE_LABEL_COLOR = 'UPDATE_LABEL_COLOR';
+
+export const UPDATE_LABEL_KEY = 'UPDATE_LABEL_KEY';
+
+export const ADD_PICTURE = 'ADD_PICTURE';
+
+export const ADD_LABEL = 'ADD_LABEL';
+
+export const UPDATE_TIER_PORTRAIT = 'UPDATE_TIER_PORTRAIT';
+
+export const UPDATE_TIER_CATEGORY = 'UPDATE_TIER_CATEGORY';
+
+export const UPDATE_TIER_DESCRIPTION = 'UPDATE_TIER_DESCRIPTION';
+
+export const UPDATE_TIER_NAME = 'UPDATE_TIER_NAME';
+
+
+
+
+
+
+
+
+
+

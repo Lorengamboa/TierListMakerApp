@@ -8,9 +8,9 @@ const CarouselImages = (props) => {
 
   return (
     <FlatList
+      numColumns={5}
       showsHorizontalScrollIndicator={false}
       contentContainerStyle={{ justifyContent: "center", alignItems: "center" }}
-      horizontal={true}
       data={props.images}
       keyExtractor={(item, index) => index.toString()}
       renderItem={({ item, index }) =>

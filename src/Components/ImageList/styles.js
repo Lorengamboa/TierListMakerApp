@@ -14,8 +14,8 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
   },
   image: {
-    width: width,
-    height: height,
+    width: 120,
+    height: 120,
     justifyContent: "center",
     alignItems: "center",
     borderWidth: 2,

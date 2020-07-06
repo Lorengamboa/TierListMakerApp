@@ -87,7 +87,7 @@ export class Dashboard extends Component {
 
     this.toggleImageBrowser = this.toggleImageBrowser.bind(this);
     this.onImageSelected = this.onImageSelected.bind(this);
-    this.handleCameraRoll = this.handleCameraRoll.bind(this);
+    //this.handleCameraRoll = this.handleCameraRoll.bind(this);
     this.handleGalleryRoll = this.handleGalleryRoll.bind(this);
     this.handleImagePickerResponse = this.handleImagePickerResponse.bind(this);
 
@@ -365,9 +365,9 @@ export class Dashboard extends Component {
   onImageSelected(img) {
     FileSystem.downloadImage(img, this.tier.name)
       .then(res => {
-        if(res) {
+        if (res) {
           this.props.addPicture(res);
-        } 
+        }
       })
       .catch(err => {
         console.log(err);
@@ -378,7 +378,7 @@ export class Dashboard extends Component {
   }
 
   /**
-   * @description
+   * @DEPRECATED
    */
   handleCameraRoll = () =>
     ImagePicker.launchCamera({}, this.handleImagePickerResponse);
@@ -387,7 +387,7 @@ export class Dashboard extends Component {
    * @description
    */
   handleGalleryRoll = () =>
-    ImagePicker.launchImageLibrary({}, this.handleImagePickerResponse);
+    ImagePicker.launchImageLibrary({ maxWidth: 120, maxHeight: 120 }, this.handleImagePickerResponse);
 
   /**
    * @description
@@ -413,7 +413,7 @@ export class Dashboard extends Component {
           console.log(err);
         });
 
-        this.setAddImageModelVisible(false);
+      this.setAddImageModelVisible(false);
     }
   }
 
@@ -450,16 +450,16 @@ export class Dashboard extends Component {
                   {t("dashboard:main:empty_caroussel")}
                 </Text>
                 <Text style={{ color: "white" }}>
-                {t("dashboard:main:press_plus")}
+                  {t("dashboard:main:press_plus")}
                 </Text>
               </View>
             ) : (
-              <CarouselImages
-                images={this.tier.images}
-                dimensions={this.state.dimensions}
-                onImageSelect={this.selectImage}
-              />
-            )}
+                <CarouselImages
+                  images={this.tier.images}
+                  dimensions={this.state.dimensions}
+                  onImageSelect={this.selectImage}
+                />
+              )}
           </View>
           <View
             style={{
@@ -474,28 +474,27 @@ export class Dashboard extends Component {
             />
           </View>
         </View>
-        
+
         <TierListSettings tier={this.tier} onClose={this.toggleSettingsModal} visible={this.state.settingsModalVisible} {...this.props} />
 
         <AddImageModal
           visible={this.state.addImageModalVisible}
           setModalVisible={this.setAddImageModelVisible}
           onGalleryRoll={this.handleGalleryRoll}
-          onCameraRoll={this.handleCameraRoll}
           onImageBrowserRoll={this.toggleImageBrowser}
         />
 
         <Modal
-            animationType="slide"
-            visible={this.state.imageBrowserVisible}
-            onRequestClose={this.toggleImageBrowser}
-          >
-            <WebViewBrowser
-              onImageSelected={this.onImageSelected}
-              close={this.toggleImageBrowser}
-              {...this.props}
-            />
-          </Modal>
+          animationType="slide"
+          visible={this.state.imageBrowserVisible}
+          onRequestClose={this.toggleImageBrowser}
+        >
+          <WebViewBrowser
+            onImageSelected={this.onImageSelected}
+            close={this.toggleImageBrowser}
+            {...this.props}
+          />
+        </Modal>
 
         {this.state.settingLabelVisible && (
           <LabelModalSettings
@@ -521,8 +520,8 @@ export class Dashboard extends Component {
               this.state.selectedImage.origin === null
                 ? this.tier.images[this.state.selectedImage.image]
                 : this.tier.labels[this.state.selectedImage.origin].images[
-                    this.state.selectedImage.image
-                  ]
+                this.state.selectedImage.image
+                ]
             }
             labels={this.tier.labels}
           />

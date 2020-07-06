@@ -15,21 +15,21 @@ const AddImageModal = (props) => {
 
     props.onImageBrowserRoll();
   }
-    return (
-        <Modal isVisible={props.visible}   onBackdropPress={() => props.setModalVisible(false)}>
-          <View
-            style={{
-              borderColor: "red",
-              backgroundColor: "black",
-              justifyContent: "center",
-              alignItems: "center",
-              borderColor: "white",
-              borderWidth: 2,
-              padding: 50
-            }}
-          >
-           <TouchableHighlight onPress={props.onGalleryRoll} underlayColor="#fff">
-            <View style={{margin: 30}}>
+  return (
+    <Modal isVisible={props.visible} onBackdropPress={() => props.setModalVisible(false)}>
+      <View
+        style={{
+          borderColor: "red",
+          backgroundColor: "black",
+          justifyContent: "center",
+          alignItems: "center",
+          borderColor: "white",
+          borderWidth: 2,
+          padding: 50
+        }}
+      >
+        <TouchableHighlight onPress={props.onGalleryRoll} underlayColor="#fff">
+          <View style={{ margin: 30 }}>
             <Text>
               <Icon name="image-multiple" size={25} color="white" style />
               <Text style={{ color: "white", fontSize: 20 }}>GALLERY</Text>
@@ -37,23 +37,10 @@ const AddImageModal = (props) => {
             <Text style={{ color: "white", fontSize: 10 }}>
               Pick an image from your gallery
             </Text>
-            </View>
-            </TouchableHighlight>
-
-            <TouchableHighlight onPress={props.onCameraRoll} underlayColor="#fff">
-            <View style={{margin: 30}}>
-            <Text>
-              <Icon name="camera" size={25} color="white" style />
-              <Text style={{ color: "white", fontSize: 20 }}>CAMERA</Text>
-            </Text>
-            <Text style={{ color: "white", fontSize: 10 }}>
-              Use your camera to take a picture
-            </Text>
-            </View>
-            </TouchableHighlight>
-
-            <TouchableHighlight onPress={handleImageBrowserRoll} underlayColor="#fff">
-            <View style={{margin: 30}}>
+          </View>
+        </TouchableHighlight>
+        <TouchableHighlight onPress={handleImageBrowserRoll} underlayColor="#fff">
+          <View style={{ margin: 30 }}>
             <Text>
               <Icon name="image-search-outline" size={25} color="white" style />
               <Text style={{ color: "white", fontSize: 20 }}>SEARCH</Text>
@@ -62,12 +49,12 @@ const AddImageModal = (props) => {
               Search the internet for an image
             </Text>
           </View>
-          </TouchableHighlight>
+        </TouchableHighlight>
 
-          </View>
+      </View>
 
-        </Modal>
-    )
+    </Modal>
+  )
 }
 
 export default AddImageModal

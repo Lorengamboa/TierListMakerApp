@@ -24,7 +24,7 @@ import styles from "./styles";
 
   componentDidMount() {
     return axios
-      .get("https://www.tierlistbuilder.com/api/list")
+      .get("http://192.168.1.136/api/list")
       .then((response) => {
         this.setState({
           templates: response.data,
@@ -43,7 +43,7 @@ import styles from "./styles";
 
   onPortraitClicked(item) {
     return axios
-      .get("https://www.tierlistbuilder.com/api/tier/" + item.id)
+      .get("http://192.168.1.136/api/tier/" + item.id)
       .then((tier) => {
         this.props.navigation.navigate(routes.SPECTATE_TIER, {
           tier: tier.data,

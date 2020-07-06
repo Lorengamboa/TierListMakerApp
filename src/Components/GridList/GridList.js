@@ -57,7 +57,6 @@ export default React.forwardRef((props, ref) => {
                 height: size,
                 borderWidth: 2,
                 margin: 2,
-                borderColor: "black"
               }}
               source={{ uri: `data:image/gif;base64,${item.base64}` }}
             />

@@ -1,5 +1,7 @@
 {
-    "react-native": {
-      "messaging_android_notification_color": "@color/black"
-    }
+  "react-native": {
+    "messaging_android_notification_color": "@color/black",
+    "admob_android_app_id": "ca-app-pub-9390140992935339~3472109480",
+    "admob_ios_app_id": "ca-app-pub-xxxxxxxx~xxxxxxxx"
   }
+}

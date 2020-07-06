@@ -81,11 +81,11 @@ function RootStack() {
         options={screenOptions.tierList}
         component={DashboardScreen}
       />
-      {/* <Stack.Screen
+      <Stack.Screen
         name={routes.DOWNLOAD}
         options={{ headerShown: false }}
         component={DownloadScreen}
-      /> */}
+      />
       <Stack.Screen
         name={routes.SPECTATE_TIER}
         options={{ headerShown: false }}

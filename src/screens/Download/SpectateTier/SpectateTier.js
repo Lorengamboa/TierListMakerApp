@@ -50,7 +50,7 @@ export class SpectateTier extends Component {
       <Image
         style={styles.icon}
         source={{
-          uri: "https://www.tierlistbuilder.com/images/" + item,
+          uri: "http://192.168.1.136/images/" + item,
         }}
       />
     );
@@ -68,10 +68,10 @@ export class SpectateTier extends Component {
           // succeed
           AdMobRewarded.addEventListener("rewarded", (reward) => {
             const { name, category, description, portrait } = tier;
-            
+
             const path = tier.name;
             const urls = tier.pictures.map(
-              (picture) => "https://www.tierlistbuilder.com/images/" + picture
+              (picture) => "http://192.168.1.136/images/" + picture
             );
 
             this.setState({
@@ -82,29 +82,39 @@ export class SpectateTier extends Component {
               .then((result) => {
                 if (result) {
 
-                  var tierData = {
-                    ...result,
-                    name,
-                    category,
-                    description,
-                    portrait,
-                  };
-                  FS.downloadImages(urls, path)
-                    .then((downloadedImages) => {
-                      selectTier(path);
-                      createTier(tierData, downloadedImages);
+                  FS.downloadImage("http://192.168.1.136/images/" + portrait, path)
+                    .then(image => {
 
-                      this.setState({
-                        loading: false,
-                      });
-                      ToastAndroid.show("Download succeed", ToastAndroid.SHORT);
+                      const base64Portrait = `data:image/png;base64,${image.base64}`;
+
+                      var tierData = {
+                        ...result,
+                        name,
+                        category,
+                        description,
+                        portrait: base64Portrait,
+                      };
+
+                      FS.downloadImages(urls, path)
+                        .then((downloadedImages) => {
+                          selectTier(path);
+                          createTier(tierData, downloadedImages);
+
+                          this.setState({
+                            loading: false,
+                          });
+                          ToastAndroid.show("Download succeed", ToastAndroid.SHORT);
+                        })
+                        .catch((err) => {
+                          ToastAndroid.show("Download failed", ToastAndroid.SHORT);
+                          this.setState({
+                            loading: false,
+                          });
+                        });
                     })
-                    .catch((err) => {
+                    .catch(err => {
                       ToastAndroid.show("Download failed", ToastAndroid.SHORT);
-                      this.setState({
-                        loading: false,
-                      });
-                    });
+                    })
                 } else {
                   this.setState({
                     loading: false,
@@ -123,7 +133,7 @@ export class SpectateTier extends Component {
               });
           });
 
-          AdMobRewarded.addEventListener("adClosed", () => {});
+          AdMobRewarded.addEventListener("adClosed", () => { });
         }
       })
       .catch((err) => {
@@ -146,8 +156,8 @@ export class SpectateTier extends Component {
           {this.state.loading ? (
             <Spinner />
           ) : (
-            <Button title={"download"} onPress={this.onDownload} raised />
-          )}
+              <Button title={"download"} onPress={this.onDownload} raised />
+            )}
         </View>
       </View>
     );

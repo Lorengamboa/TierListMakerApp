@@ -6,7 +6,7 @@ export const addWaterMark = (uri) => {
     markerSrc: require("../../assets/img/logo-transparency.png"),
     position: "bottomRight",
     scale: 1,
-    markerScale: 0.3,
+    markerScale: 0.2,
     quality: 100,
   })
     .then((image) => {

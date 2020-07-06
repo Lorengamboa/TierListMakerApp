@@ -36,7 +36,7 @@ const PortraitList = (props) => {
             margin: 5,
           }}
           source={{
-            uri: "https://www.tierlistbuilder.com/images/" + item.portrait,
+            uri: "http://192.168.1.136/images/" + item.portrait,
           }}
         />
         <Text style={{ color: "white" }}>{item.name}</Text>

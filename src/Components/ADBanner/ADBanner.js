@@ -1,6 +1,6 @@
 import React from "react";
 import { View } from "react-native";
-import { AdMobBanner } from "react-native-admob";
+import { BannerAd, BannerAdSize } from '@react-native-firebase/admob';
 
 import { admobBannerID } from "@config/admob";
 
@@ -15,10 +15,11 @@ const ADBanner = props => {
   return (
     <View style={[styles.container, position]}>
       {props.display && (
-        <AdMobBanner
-          adSize="smartBannerPortrait"
-          adUnitID={admobBannerID} // should be pass as prop LOL
-          testDevices={[AdMobBanner.simulatorId]}
+        <BannerAd
+          //adSize="smartBannerPortrait"
+          unitId={admobBannerID}
+          size={BannerAdSize.SMART_BANNER}
+          //testDevices={[AdMobBanner.simulatorId]}
         />
       )}
     </View>

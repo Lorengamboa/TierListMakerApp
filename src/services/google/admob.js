@@ -1,22 +1,18 @@
-import { AdMobInterstitial, AdMobRewarded } from "react-native-admob";
+import admob, { MaxAdContentRating, InterstitialAd, RewardedAd, AdEventType, RewardedAdEventType } from '@react-native-firebase/admob';
 
 import { PREMIUM_MODE, ENVIROMENT } from "@application/constants";
 import {
   AdMobInterstitialID,
-  test_AdMobInterstitialID,
   AdmobRewardID,
-  test_admobRewardID,
 } from "@config/admob";
 
 /**
  * @description A service initializer for Google AdMob banners
  */
 class AdmobService {
-  constructor(mode) {
-    this.mode = mode;
-    this.admobBannerID = null;
-    this.AdMobInterstitialID = null;
-    this.admobRewardID = null;
+  constructor() {
+    this.interstitial = null;
+    this.reward = null;
 
     this.init();
   }
@@ -25,112 +21,111 @@ class AdmobService {
    * Initializer
    */
   init() {
-    this.loadVariables();
+    admob()
+      .setRequestConfiguration({
+        // Update all future requests suitable for parental guidance
+        maxAdContentRating: MaxAdContentRating.PG,
 
-    // SETTING UP INTERSTITIAL
-    AdMobInterstitial.setTestDevices([AdMobInterstitial.simulatorId]);
-    AdMobInterstitial.setAdUnitID(this.AdMobInterstitialID);
-    
+        // Indicates that you want your content treated as child-directed for purposes of COPPA.
+        tagForChildDirectedTreatment: true,
+
+        // Indicates that you want the ad request to be handled in a
+        // manner suitable for users under the age of consent.
+        tagForUnderAgeOfConsent: true,
+      })
+      .then(() => {
+        // Request config successfully set!
+      })
+      .catch(err => console.error(err));
+
+    this.interstitial = InterstitialAd.createForAdRequest(AdMobInterstitialID);
+    this.reward = RewardedAd.createForAdRequest(AdmobRewardID);
+
+
+
+    this.interstitialEventListener = this.interstitial.onAdEvent(type => {
+      if (type === AdEventType.LOADED) {
+        console.info("interstitial loaded");
+      }
+      else if (type === AdEventType.CLICKED) {
+        console.info("interstitial clicked");
+      }
+      else if (type === AdEventType.CLOSED) {
+        this.requestInterstitial();
+        console.info("interstitial CLOSED");
+      }
+      else if (type === AdEventType.ERROR) {
+        console.info("interstitial ERROR");
+      }
+      else if (type === AdEventType.OPENED) {
+        console.info("interstitial OPENED");
+      }
+      else if (type === AdEventType.LEFT_APPLICATION) {
+        console.info("interstitial LEFT_APPLICATION");
+      }
+    });
+
+    this.rewardEventListenerListener = this.reward.onAdEvent(type => {
+      if (type === RewardedAdEventType.EARNED_REWARD) {
+        console.info("Reward EARNED");
+      }
+      else if (type === RewardedAdEventType.LOADED) {
+        console.info("Reward LOADED");
+      }
+      else if (type === AdEventType.CLOSED) {
+        console.info("Reward CLOSED");
+        this.requestAdMobReward();
+      }
+    });
+
     this.requestInterstitial();
     this.requestAdMobReward();
-
-    AdMobInterstitial.addEventListener("adLoaded", () =>
-      console.info("AdMobInterstitial adLoaded")
-    );
-    AdMobInterstitial.addEventListener("adFailedToLoad", (error) =>
-      console.error(error)
-    );
-    AdMobInterstitial.addEventListener("adOpened", () =>
-      console.info("AdMobInterstitial => adOpened")
-    );
-    AdMobInterstitial.addEventListener("adClosed", () => {
-      console.info("AdMobInterstitial => adClosed");
-      AdMobInterstitial.requestAd().catch((error) => console.warn(error));
-    });
-    AdMobInterstitial.addEventListener("adLeftApplication", () =>
-      console.info("AdMobInterstitial => adLeftApplication")
-    );
-
-    // SETTING UP REWARD
-    AdMobRewarded.setTestDevices([AdMobRewarded.simulatorId]);
-    AdMobRewarded.setAdUnitID(this.admobRewardID);
-
-    AdMobRewarded.addEventListener("adLoaded", () =>
-      console.info("AdMobRewarded => adLoaded")
-    );
-    AdMobRewarded.addEventListener("adFailedToLoad", (error) =>
-      console.warn(error)
-    );
-    AdMobRewarded.addEventListener("adOpened", () =>
-      console.info("AdMobRewarded => adOpened")
-    );
-    AdMobRewarded.addEventListener("videoStarted", () =>
-      console.info("AdMobRewarded => videoStarted")
-    );
-    AdMobRewarded.addEventListener("adClosed", () => {
-      console.info("AdMobRewarded => adClosed");
-      AdMobRewarded.requestAd().catch((error) => console.warn(error));
-    });
-    AdMobRewarded.addEventListener("adLeftApplication", () =>
-      console.info("AdMobRewarded => adLeftApplication")
-    );
-  }
-
-  /**
-   * sets variables based on enviroment running
-   */
-  loadVariables() {
-    if (this.mode === "development") {
-      this.AdMobInterstitialID = test_AdMobInterstitialID;
-      this.admobRewardID = test_admobRewardID;
-    } else {
-      this.AdMobInterstitialID = AdMobInterstitialID;
-      this.admobRewardID = AdmobRewardID;
-    }
   }
 
   /**
    * Loads up Interstitial
    */
   requestInterstitial() {
-    AdMobInterstitial.requestAd().catch((error) => console.warn(error));
+    this.interstitial.load()
   }
 
   /**
    * Loads up Reward
    */
   requestAdMobReward() {
-    AdMobRewarded.requestAd().catch((error) => console.warn(error));
+    this.reward.load();
   }
 
   /**
    * Displays preloaded Interstitial
    */
   showInterstitial() {
-    AdMobInterstitial.showAd().catch((error) => console.warn(error));
+    if (this.interstitial.loaded) {
+      this.interstitial.show();
+    }
   }
 
   /**
    * Displays reward
    */
   showReward() {
-    return AdMobRewarded.showAd()
-      .then(res => {
-        return AdMobRewarded;
-      })
-      .catch(err => {
-        throw err;
-      })
+    if (this.reward.loaded) {
+      return this.reward.show()
+        .then(res => {
+          return res;
+        })
+        .catch(err => {
+          throw err;
+        });
+    }
   }
 
   removeAllListeners() {
-    AdMobRewarded.removeAllListeners();
-    AdMobInterstitial.removeAllListeners();
+    this.interstitialEventListener();
+    this.rewardEventListener();
   }
 }
 
-// @TODO: SHOULD BE ID
-const admobService =
-  PREMIUM_MODE === false ? new AdmobService(ENVIROMENT) : null;
+const admobService = !PREMIUM_MODE ? new AdmobService(ENVIROMENT) : null;
 
 export default admobService;

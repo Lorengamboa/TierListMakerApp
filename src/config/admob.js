@@ -1,12 +1,10 @@
-export const admobBannerID = "ca-app-pub-9390140992935339/8668595844";
+import { TestIds } from '@react-native-firebase/admob';
 
-export const test_admobBannerID = "ca-app-pub-3940256099942544/6300978111";
 
-export const AdMobInterstitialID  = "ca-app-pub-9390140992935339/9651234945";
+export const admobBannerID = __DEV__ ? TestIds.BANNER : "ca-app-pub-9390140992935339/8668595844";
 
-export const test_AdMobInterstitialID = "ca-app-pub-3940256099942544/1033173712";
+export const AdMobInterstitialID = __DEV__ ? TestIds.INTERSTITIAL : "ca-app-pub-9390140992935339/9651234945";
 
-export const AdmobRewardID = "ca-app-pub-9390140992935339/5207722705";
+export const AdmobRewardID = __DEV__ ? TestIds.REWARDED : "ca-app-pub-9390140992935339/5207722705";
 
-export const test_admobRewardID = "ca-app-pub-3940256099942544/5224354917";
 

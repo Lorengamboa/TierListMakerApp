@@ -17,8 +17,6 @@ const Footer = (props) => {
       style={{
         flex: 1,
         backgroundColor: "#252525",
-        borderTopLeftRadius: 30,
-        borderTopRightRadius: 30,
         flexDirection: "row",
         justifyContent: "center",
       }}

@@ -1,10 +1,12 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 
+import * as theme from "@config/theme";
+
 const styles = StyleSheet.create({
   container: { flex: 1, justifyContent: "center", alignItems: "center" },
-  title: { fontSize: 23, color: "white" },
-  subtitle: { color: "white" },
+  title: { fontSize: 23, color: theme.TEXT_BODY_COLOR },
+  subtitle: { color: theme.TEXT_BODY_COLOR },
 });
 
 const EmptyList = () => {

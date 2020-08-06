@@ -5,8 +5,10 @@ import { View, TouchableOpacity } from "react-native";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
-import { HomeScreen, GuideScreen, SettingsScreen, AboutScreen, DownloadScreen } from "@screens";
+import { HomeScreen, GuideScreen, SettingsScreen, CreateScreen, AboutScreen, DownloadScreen } from "@screens";
+
 import routes from "@config/routes";
+import * as theme from "@config/theme";
 
 import styles from "./styles";
 
@@ -20,6 +22,7 @@ export default function HomeTabNavigator({ navigation, route }) {
   return (
     <>
 
+  {/* 
       <TouchableOpacity
         underlayColor={'transparent'}
         onPress={() => navigation.navigate(routes.CREATE)}
@@ -27,36 +30,38 @@ export default function HomeTabNavigator({ navigation, route }) {
       >
         <Icon name="plus" size={45} color="white" />
       </TouchableOpacity>
+
+  */}
       <Tab.Navigator barStyle={styles.barStyle} initialRouteName="Home">
         <Tab.Screen
           name={routes.HOME}
           component={HomeScreen}
           options={{
             headerShown: true,
-            tabBarLabel: "Home",
+            tabBarLabel: "",
             tabBarIcon: ({ tintColor }) => (
               <View>
-                <Icon name={"home"} size={25} style={[{ color: "white" }]} />
+                <Icon name={"home"} size={25} style={[{ color: theme.PRIMARY_COLOR }]} />
               </View>
             ),
             tabBarColor: styles.tabBarColor,
           }}
         />
         <Tab.Screen
-          name={routes.GUIDE}
-          component={GuideScreen}
+          name={routes.CREATE}
+          component={CreateScreen}
           options={{
-            tabBarLabel: "Guide",
+            tabBarLabel: "",
             headerShown: false,
             tabBarIcon: ({ tintColor }) => (
               <View>
-                <Icon name={"book"} size={25} style={[{ color: "white" }]} />
+                <Icon name={"plus"} size={25} style={[{ color: theme.PRIMARY_COLOR }]} />
               </View>
             ),
             tabBarColor: styles.tabBarColor,
           }}
         />
-        {/*
+       {/*
         <Tab.Screen
           name="EMPTY"
           component={HomeScreen}
@@ -65,8 +70,8 @@ export default function HomeTabNavigator({ navigation, route }) {
             showLabel: false,
             tabBarLabel: "",
           }}
-        /> */}
-        <Tab.Screen
+        /> 
+         <Tab.Screen
           name={routes.DOWNLOAD}
           component={DownloadScreen}
           tabBarVisible={false}
@@ -80,29 +85,16 @@ export default function HomeTabNavigator({ navigation, route }) {
             ),
             tabBarColor: styles.tabBarColor,
           }}
-        />
+        />*/}
         <Tab.Screen
           name={routes.SETTINGS}
           component={SettingsScreen}
           options={{
             headerShown: false,
-            tabBarLabel: "Settings",
+            tabBarLabel: "",
             tabBarIcon: ({ tintColor }) => (
               <View>
-                <Icon name={"settings"} size={25} style={[{ color: "white" }]} />
-              </View>
-            ),
-            tabBarColor: styles.tabBarColor,
-          }}
-        />
-        <Tab.Screen
-          name={routes.ABOUT}
-          component={AboutScreen}
-          options={{
-            tabBarLabel: "About",
-            tabBarIcon: ({ tintColor }) => (
-              <View>
-                <Icon name={"help"} size={25} style={[{ color: "white" }]} />
+                <Icon name={"settings"} size={25} style={[{ color: theme.PRIMARY_COLOR }]} />
               </View>
             ),
             tabBarColor: styles.tabBarColor,

@@ -9,19 +9,20 @@ import ADBanner from "@components/ADBanner";
 import Circle from "@components/Circle";
 import { PREMIUM_MODE } from "@application/constants";
 import { labelMainColors } from "@config/tierList";
+import * as theme from "@config/theme";
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 30,
-    backgroundColor: "#3d3d3d",
+    backgroundColor: theme.LIGHT_THEME_BACKGROUND_COLOR,
   },
   label: (color, size) => {
     return {
       marginTop: 50,
       height: size,
       width: size,
-      paddingTop: size / 4,
+      paddingTop: size / 6,
       color: "black",
       backgroundColor: color,
       borderColor: "black",
@@ -71,15 +72,15 @@ const LabelModalSettings = (props) => {
         </View>
 
         <View style={{ marginTop: 20 }}>
-          <Text style={{ color: "white" }}>{t("dashboard:label:name_label")}</Text>
+          <Text style={{ color: "grey" }}>{t("dashboard:label:name_label")}</Text>
           <Input
-            placeholderTextColor="white"
-            inputStyle={{ color: "white" }}
+            placeholderTextColor="black"
+            inputStyle={{ color: "black" }}
             onChangeText={(value) => handleOnLabelChange(value)}
             containerStyle={{
               marginTop: 5,
               marginBottom: 30,
-              backgroundColor: "#2a2a2a",
+              backgroundColor: "grey",
             }}
             defaultValue={props.selectedLabel.key}
           />
@@ -102,8 +103,8 @@ const LabelModalSettings = (props) => {
           />
         </View>
 
-        <View style={{ borderBottomColor: "white", borderBottomWidth: 2}}>
-        <Text style={{ color: "white" }}>{t("dashboard:label:add_label")}</Text>
+        <View style={{ borderBottomColor: "black", borderBottomWidth: 2}}>
+        <Text style={{ color: "black" }}>{t("dashboard:label:add_label")}</Text>
         </View>
         <View style={{ flexDirection: "row", justifyContent:'space-between'}}>
           <RaisedTextButton

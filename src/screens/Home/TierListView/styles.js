@@ -6,23 +6,22 @@ export default StyleSheet.create({
   },
   counterList: {
     marginLeft: 5,
-    marginTop: 15,
-    marginBottom: 15,
     paddingLeft: 10,
     paddingBottom: 10,
-    color: "white",
+    color: "black",
     fontFamily: "segoe-ui-semilight-2",
     borderBottomWidth: 2,
     borderColor: "rgba(255,255,255, .2)",
   },
   card: {
-    padding: 20,
-    marginTop: 10,
+    padding: 10,
     borderRadius: 5,
     backgroundColor: "rgba(255,255,255, .2)",
+    borderColor: "black",
+    borderWidth: .5
   },
   textName: {
-    color: "white",
+    color: "black",
     fontSize: 20,
     fontFamily: "Segoe UI Bold",
   },
@@ -36,12 +35,12 @@ export default StyleSheet.create({
     marginTop: 10,
     marginBottom: 10,
   },
-  textDescription: { color: "white", fontFamily: "segoe-ui-semilight-2" },
+  textDescription: { color: "black", fontFamily: "segoe-ui-semilight-2" },
   portrait: {
     width: 50,
     height: 50,
-    borderWidth: 2,
-    borderRadius: 50,
+    borderWidth: 1,
+    borderRadius: 10,
     borderColor: "black",
   },
   header: {
@@ -58,14 +57,14 @@ export default StyleSheet.create({
   },
   textDate: {
     fontWeight: "bold",
-    color: "white",
+    color: "black",
     textAlign:'left',
   },
   textImage: {
     flex: 1,
     textAlign:'right',
     fontWeight: "bold",
-    color: "white",
+    color: "black",
     justifyContent: 'flex-end' 
   },
 });

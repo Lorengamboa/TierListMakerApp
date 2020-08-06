@@ -12,6 +12,7 @@ import { useTranslation } from "react-i18next";
 
 import { RaisedTextButton } from "react-native-material-buttons";
 
+import * as theme from "@config/theme";
 import ADBanner from "@components/ADBanner";
 import { PREMIUM_MODE } from "@application/constants";
 
@@ -20,20 +21,20 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 10,
     alignItems: "center",
-    backgroundColor: "#3d3d3d",
+    backgroundColor: theme.LIGHT_THEME_BACKGROUND_COLOR,
   },
   tier: (color, size) => {
     return {
-      height: size,
-      width: size,
-      marginLeft: 5,
-      paddingTop: size / 3,
+      flex: 1,
       fontSize: 10,
-      color: "black",
+      minHeight: size,
+      width: size * 1.5,
+      paddingTop: size / 3,
+      paddingBottom: size / 3,
       backgroundColor: color,
+      margin: 10,
+      borderRadius: 5,
       textAlign: "center",
-      borderColor: "black",
-      borderWidth: 2,
     };
   },
 });
@@ -65,43 +66,40 @@ const ImageModalSettings = (props) => {
             width: 120,
             height: 120,
             margin: 50,
+            borderWidth: 1,
+            borderColor: "black",
           }}
           source={{
             uri: `data:image/gif;base64,${props.selectedImage.base64}`,
           }}
         />
-        <View style={{ height: props.size }}>
-          <FlatList
-            showsHorizontalScrollIndicator={false}
-            keyExtractor={(item, index) => index.toString()}
-            horizontal={true}
-            data={props.labels}
-            renderItem={({ item, index }) => (
-              <TouchableOpacity onPress={() => handleOnMoveImage(index)}>
-                <Text style={styles.tier(item.color, props.size)}>
-                  {item.key}
-                </Text>
-              </TouchableOpacity>
-            )}
+        <FlatList
+          numColumns={3}
+          keyExtractor={(item, index) => index.toString()}
+          data={props.labels}
+          renderItem={({ item, index }) => (
+            <TouchableOpacity onPress={() => handleOnMoveImage(index)}>
+              <Text style={styles.tier(item.color, props.size)}>
+                {item.key}
+              </Text>
+            </TouchableOpacity>
+          )}
+        />
+        {props.isClearImage && (
+          <RaisedTextButton
+            title={t("dashboard:image:clear")}
+            style={{ marginTop: 30, width: "100%" }}
+            onPress={() => handleOnMoveImage(null)}
+            raised
           />
-          <View style={{ flex: 1 }}>
-            {props.isClearImage && (
-              <RaisedTextButton
-                title={t("dashboard:image:clear")}
-                style={{ marginTop: 30, width: "100%" }}
-                onPress={() => handleOnMoveImage(null)}
-                raised
-              />
-            )}
-            <RaisedTextButton
-              title={t("dashboard:image:delete")}
-              color="red"
-              style={{ marginTop: 30, width: "100%", borderWidth: 1 }}
-              onPress={() => handleOnDeleteImage()}
-              raised
-            />
-          </View>
-        </View>
+        )}
+        <RaisedTextButton
+          title={t("dashboard:image:delete")}
+          color="red"
+          style={{ marginTop: 30, width: "100%", borderWidth: 1 }}
+          onPress={() => handleOnDeleteImage()}
+          raised
+        />
       </View>
 
       <ADBanner display={!PREMIUM_MODE} position="bottom" />

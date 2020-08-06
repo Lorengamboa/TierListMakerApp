@@ -1,5 +1,7 @@
 import { StyleSheet } from "react-native";
 
+import * as theme from "@config/theme";
+
 const styles = StyleSheet.create({
   createButton: {
     alignItems: "center",
@@ -15,7 +17,7 @@ const styles = StyleSheet.create({
   },
   tabBarColor: () => "#3BAD87",
   barStyle: {
-    backgroundColor: "#121212",
+    backgroundColor: theme.LIGHT_THEME_BACKGROUND_COLOR,
   }
 });
 

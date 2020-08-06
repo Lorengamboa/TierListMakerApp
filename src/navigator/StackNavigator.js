@@ -17,6 +17,7 @@ import {
   DashboardScreen,
 } from "@screens";
 import routes from "@config/routes";
+import * as theme from "@config/theme";
 
 import HomeTabNavigator from "./HomeTabNavigator";
 
@@ -24,24 +25,24 @@ const Stack = createStackNavigator();
 
 const screenOptions = {
   home: {
-    title: "Tier List Maker",
+    title: "Home",
     headerTitleAlign: "center",
-    headerShown: false,
+    headerShown: true,
     headerStyle: {
-      backgroundColor: "#121212",
+      backgroundColor: theme.LIGHT_THEME_BACKGROUND_COLOR,
     },
     headerTintColor: "white",
     headerTitleStyle: {
       fontWeight: "bold",
-      color: "red",
+      color: theme.PRIMARY_COLOR,
       fontSize: 20,
     },
   },
   create: {
-    title: "Create New List",
-    headerShown: false,
+    title: "Create a Tier List",
+    headerShown: true,
     headerStyle: {
-      backgroundColor: "#171717",
+      backgroundColor: "white",
     },
 
     headerTintColor: "white",
@@ -51,14 +52,15 @@ const screenOptions = {
   },
   tierList: {
     title: "Tier List workboard",
+    headerTitleAlign: "center",
     headerShown: true,
     headerStyle: {
-      backgroundColor: "#171717",
+      backgroundColor: "white",
     },
-
-    headerTintColor: "white",
+    headerTintColor: "black",
     headerTitleStyle: {
       fontWeight: "bold",
+      color: theme.PRIMARY_COLOR,
     },
   },
 };

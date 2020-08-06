@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { View, BackHandler } from "react-native";
 import { connect } from "react-redux";
 import { withTranslation } from "react-i18next";
+import Onboarding from 'react-native-onboarding-swiper';
 
 import initializeI18 from "@application/i18n";
 import analytics from "@react-native-firebase/analytics";
@@ -82,6 +83,16 @@ class CreatedTierList extends Component {
     if (tierList.length === 0) return <EmptyList />;
     else
       return (
+        true && <Onboarding
+  pages={[
+    {
+      backgroundColor: '#fff',
+      image: <Image source={require('./images/circle.png')} />,
+      title: 'Onboarding',
+      subtitle: 'Done with React Native Onboarding Swiper',
+    },
+  ]}
+/>
         <TierList
           list={tierList}
           onTierPress={(tierName) => this.goToSavedTierList(tierName)}

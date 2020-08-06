@@ -8,17 +8,17 @@ const styles = StyleSheet.create({
   row: {
     flex: 1,
     flexDirection: "row",
-    borderBottomWidth: 1,
+    margin: 10
   },
   label: (color, size) => {
     return {
-      flex: 2,
-      borderWidth: 1,
+      flex: 1,
       minHeight: size,
       width: size,
       paddingTop: size / 3,
+      paddingBottom: size / 3,
       backgroundColor: color,
-      borderColor: "black",
+      borderRadius: 5
     };
   },
   labelText: {
@@ -26,12 +26,14 @@ const styles = StyleSheet.create({
     fontSize: 15,
     textAlign: "center",
   },
+
   imageContainer: (nImages) => {
     return {
-      flex: 6,
-      borderWidth: 1,
-      backgroundColor: "#3d3d3d",
-
+      flex: 3,
+      backgroundColor: "#EBEBEB",
+      marginLeft: 10,
+      borderRadius: 5,
+      padding: 4
     };
   },
   icon: (size) => {
@@ -40,7 +42,6 @@ const styles = StyleSheet.create({
       backgroundColor: "grey",
       justifyContent: "center",
       alignItems: "center",
-      borderWidth: 1,
       width: size,
     };
   },

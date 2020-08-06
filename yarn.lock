@@ -5118,9 +5118,10 @@ react-native-image-marker@^0.6.1:
   resolved "https://registry.yarnpkg.com/react-native-image-marker/-/react-native-image-marker-0.6.1.tgz#2611d7ae1f4fe99303d16f4b98cee418efd77bb3"
   integrity sha512-Evwdi1axs9E/CtHjeT9Xj2/uLnRBK3C2X7MC9dog2vpD5RbERNld31sRVerRH/xVMrPOWEDGoL+wXapJgcV8yA==
 
-react-native-image-picker@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/react-native-image-picker/-/react-native-image-picker-1.1.0.tgz#c2a0523886edb4cf2cdc008ad0a71433142a4d53"
+react-native-image-picker@^2.3.3:
+  version "2.3.3"
+  resolved "https://registry.yarnpkg.com/react-native-image-picker/-/react-native-image-picker-2.3.3.tgz#eaacd4a1ed9e9887613be31f0765478ca2f18a51"
+  integrity sha512-i/7JDnxKkUGSbFY2i7YqFNn3ncJm1YlcrPKXrXmJ/YUElz8tHkuwknuqBd9QCJivMfHX41cmq4XvdBDwIOtO+A==
 
 react-native-image-progress@^1.1.1:
   version "1.1.1"

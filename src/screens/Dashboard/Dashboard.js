@@ -435,31 +435,36 @@ export class Dashboard extends Component {
           <View
             style={{
               flex: 3,
-              borderTopColor: "grey",
+              borderStyle: 'dashed', borderColor: "grey", borderWidth: 1, borderRadius: 1,
             }}
           >
-            {this.tier.images.length === 0 ? (
-              <View
-                style={{
-                  flex: 1,
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              >
-                <Text style={{ fontSize: 23, color: "white" }}>
-                  {t("dashboard:main:empty_caroussel")}
-                </Text>
-                <Text style={{ color: "white" }}>
-                  {t("dashboard:main:press_plus")}
-                </Text>
-              </View>
-            ) : (
-                <CarouselImages
-                  images={this.tier.images}
-                  dimensions={this.state.dimensions}
-                  onImageSelect={this.selectImage}
-                />
-              )}
+            {
+
+              this.tier.images.length === 0 && (
+                <View
+                  style={{
+                    flex: 1,
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+
+                  <Text style={{ fontSize: 23, color: "red" }}>
+                    {t("dashboard:main:empty_caroussel")}
+                  </Text>
+                  <Text style={{ color: "red" }}>
+                    {t("dashboard:main:press_plus")}
+                  </Text>
+                </View>
+              )
+
+            }
+            <CarouselImages
+              images={this.tier.images}
+              dimensions={this.state.dimensions}
+              onImageSelect={this.selectImage}
+              onAddImage={this.setAddImageModelVisible}
+            />
           </View>
           <View
             style={{

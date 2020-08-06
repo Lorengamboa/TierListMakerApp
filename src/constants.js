@@ -1,4 +1,4 @@
-export const PREMIUM_MODE = false;
+export const PREMIUM_MODE = true;
 
 export const ENVIROMENT = "production";
 

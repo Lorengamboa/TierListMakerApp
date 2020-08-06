@@ -21,7 +21,7 @@ import styles from "./styles";
 export default React.forwardRef((props, ref) => {
   const { data, size, onSettingsClick, onImageSelect } = props;
 
-  const numberOfImagesPerRow = Math.floor(dimensions.width / size) - 2;
+  const numberOfImagesPerRow = Math.floor((dimensions.width * 2 / 3) / size);
   const remainingPadding = dimensions.width - (numberOfImagesPerRow + 2) * size;
 
   /**
@@ -56,7 +56,9 @@ export default React.forwardRef((props, ref) => {
                 width: size,
                 height: size,
                 borderWidth: 2,
-                margin: 2,
+                marginLeft: 2,
+                marginRight: 2,
+                marginTop: 5
               }}
               source={{ uri: `data:image/gif;base64,${item.base64}` }}
             />
@@ -69,20 +71,16 @@ export default React.forwardRef((props, ref) => {
     return data.map((item, index) => {
       return (
         <View style={styles.row}>
-          <View style={styles.label(item.color, size)}>
+          <TouchableHighlight
+            style={styles.label(item.color, size)}
+            onPress={handleOnTierConfig.bind(this, index)}
+          >
             <Text style={styles.labelText}>{item.key}</Text>
-          </View>
-
+          </TouchableHighlight>
           <View style={styles.imageContainer(numberOfImagesPerRow)}>
             {renderImages(index, item.images)}
           </View>
 
-          <TouchableHighlight
-            style={styles.icon(size)}
-            onPress={handleOnTierConfig.bind(this, index)}
-          >
-            <MaterialIcon name="settings" size={20} color="white" />
-          </TouchableHighlight>
         </View>
       );
     });
